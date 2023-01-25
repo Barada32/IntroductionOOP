@@ -1,9 +1,13 @@
 ﻿//Introduction OOP
 #include <iostream>
 using namespace std;
-
+#define delimetr "\n__________________________________\n"
 //#define DISTANCE_CHECK
-//#define STRUCT_POINT
+//#define STRUCT_POINT 
+//#define CONSTRUCTOR_CHECK
+//#define ASSIGMENT_CHECK_1
+#define ASSIGMENT_CHECK_2 
+// 
 //1. В классе Point написать get / set - методы;
 //2. В классе Point написать метод ? ? ? distance(? ? ? ), 
 // который возвращает расстояние до указанной точки;
@@ -40,16 +44,33 @@ public:
 		this->y = 0;
 		cout << "1ArgConstructor" << this << endl;
 	}*/
+
+	Point(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "Copy_Constructor:\t " << this << endl;
+
+	}
+
 	
 	~Point()
 	{
 		cout << "Destructor:\t " << this << endl;
 	}
+	//Operators:
+	Point operator =(const Point& other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyAssignment:\t" << this << endl;
+		return *this;
+	}
 
 
 	//methods
 
-	double distanse(Point other)const
+	double distanse(const Point& other)const
 	{
 		double x_distanse = this->x - other.x;
 		double y_distanse = this->y - other.y;
@@ -62,7 +83,7 @@ public:
 	}
 
 };
-double distance(Point A, Point B)
+double distance(const Point& A,const Point& B)
 {
 	double x_distanse = A.get_x() - B.get_x();
 
@@ -87,9 +108,16 @@ void main()
 	A.set_x(2);
 	A.set_y(3);
 	cout << A.get_x() << "\t" << A.get_y() << endl;
-	cout << A.distanse(B) << endl;;
-	cout << distance(A, B) << endl;;
+	cout << delimetr << endl;
+	cout << "растояние между точками А и В" << A.distanse(B) << endl;;
+	cout << delimetr << endl;
+	cout << "растояние между точками А и В" << B.distanse(A) << endl;;
+	cout << delimetr << endl;
+	cout << "растояние между точками А и В" << distance(A, B) << endl;;
+	cout << delimetr << endl;
+	cout <<"растояние между точками А и В" << distance(B, A) << endl;;
 #endif
+#ifdef CONSTRUCTOR_CHECK
 	Point A; //Конструктор по умолчанию 
 	/*cout << A.get_x() << "\t" << A.get_y() << endl;*/
 	A.print();
@@ -97,5 +125,27 @@ void main()
 	B.print();
 	Point C=4;
 	C.print();
+	Point D = C;
+	D.print();
+#endif	  
+#ifdef ASSIGMENT_CHECK_1
+	Point A(2, 3);
+	A.print();
+
+	Point B = A;//CopyConstructor
+	B.print();
+
+	Point C;
+	C = B; //Assigment operator
+
+#endif
+#ifdef ASSIGMENT_CHECK_2
+	int a, b, c;
+	a = b = c = 0;
+	Point A, B, C;
+	A = B =  C = Point(2, 3);
+
+
+#endif // ASSIGMENT_CHECK_2
 
 }
