@@ -7,7 +7,8 @@ using namespace std;
 //#define CONSTRUCTOR_CHECK
 //#define ASSIGMENT_CHECK_1
 //#define ASSIGMENT_CHECK_2 
-#define OVERLOAD_OPERATORS_1
+//#define OVERLOAD_OPERATORS_1
+#define OVERLOAD_OPERATORS_2
 // 
 //1. В классе Point написать get / set - методы;
 //2. В классе Point написать метод ? ? ? distance(? ? ? ), 
@@ -38,6 +39,7 @@ public:
 	{
 		this->x = x;
 		this->y = y;
+		cout << "Constructor:\t" << this << endl;
 	}
 	/*Point(double x)
 	{
@@ -81,6 +83,13 @@ public:
 		y++;
 		return old;
 	}
+	Point& operator()(double x, double y)
+	{
+		set_x(x);
+		set_y(y);
+		return *this;
+
+	}
 
 
 	//methods
@@ -114,6 +123,31 @@ Point operator+(const Point& left, const Point& right)
 	return res;
 	
 }
+
+
+bool operator==(const Point& left, const Point& right)
+{
+	/*if (left.get_x() == right.get_x() && left.get_y() == right.get_y())
+		return true;
+	else*/
+		return (left.get_x() == right.get_x() && left.get_y() == right.get_y());
+}
+bool operator!=(const Point& left, const Point& right)
+{
+	return!(left == right);
+}
+std::ostream& operator << (std::ostream& os, const Point& obj)
+{
+	return os << "X= " << obj.get_x() << "\tY= " << obj.get_y();
+}
+std::istream& operator >> (std::istream& is, Point& obj)
+{
+	double x, y;
+	is >> x >> y;
+	obj(x, y);
+	return is;
+}
+
 void main()
 {
 	setlocale(LC_ALL, "RUS");
@@ -174,18 +208,30 @@ void main()
 
 #endif // ASSIGMENT_CHECK_2
 #ifdef  OVERLOAD_OPERATORS_1
-	int a = 2;
-	int b = 3;
-	int c = a + b;
+	//int a = 2;
+	//int b = 3;
+	//int c = a + b;
 
-	Point A(2, 3);
-	Point B(4, 5);
-	Point C = A + B;
-	C.print();
-	++C;
-	C.print();
-	C++;
-	C.print();
+	//Point A(2, 3);
+	//Point B(4, 5);
+	//Point C = A + B;
+	//C.print();
+	//++C;
+	//C.print();
+	//C++;
+	//C.print();
+
+
 #endif //  OVERLOAD_OPERATORS_1
-
+#ifdef OVERLOAD_OPERATORS_2
+	/*Point A(2, 3);
+	Point B(4, 5);
+	cout << (A == B) << endl;
+	cout << (A != B) << endl;*/
+	Point A(22, 33);
+	A.print();
+	cout << A<<endl;
+	cin >> A;
+	A.print();
+#endif // OVERLOAD_OPERATORS_2
 }
