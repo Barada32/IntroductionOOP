@@ -70,13 +70,13 @@ public:
 		cout << "CopyAssignment:\t" << this << endl;
 		return *this;
 	}
-	Point& operator ++()
+	Point& operator ++()//префикс
 	{
 		x++;
 		y++;
 		return *this;
 	}
-	Point& operator ++(int)
+	Point& operator ++(int)//постфикс
 	{
 		Point old = *this;
 		x++;
