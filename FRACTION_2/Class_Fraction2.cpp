@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 using namespace std;
 
@@ -12,9 +12,9 @@ Fraction operator-(Fraction left, Fraction right);
 
 class Fraction
 {
-	int integer;		//целая часть
-	int numerator;		//числитель
-	int denominator;	//знаменатель
+	int integer;		//С†РµР»Р°СЏ С‡Р°СЃС‚СЊ
+	int numerator;		//С‡РёСЃР»РёС‚РµР»СЊ
+	int denominator;	//Р·РЅР°РјРµРЅР°С‚РµР»СЊ
 public:
 	int get_integer()const
 	{
@@ -44,8 +44,8 @@ public:
 	//					Constructors:
 
 
-	///*В классе Fraction реализовать :
-	//1. Конструкторы и вывод на экран;
+	///*Р’ РєР»Р°СЃСЃРµ Fraction СЂРµР°Р»РёР·РѕРІР°С‚СЊ :
+	//1. РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ Рё РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ;
 	//5;		//double a = 5;
 	//1 / 2;
 	//2(3 / 4);
@@ -58,8 +58,8 @@ public:
 	}
 	Fraction(double decimal)
 	{
-		this->integer = decimal;	//сохраняем целую часть
-		decimal -= integer;			//убираем целую часть из десятичной дроби
+		this->integer = decimal;	//СЃРѕС…СЂР°РЅСЏРµРј С†РµР»СѓСЋ С‡Р°СЃС‚СЊ
+		decimal -= integer;			//СѓР±РёСЂР°РµРј С†РµР»СѓСЋ С‡Р°СЃС‚СЊ РёР· РґРµСЃСЏС‚РёС‡РЅРѕР№ РґСЂРѕР±Рё
 		this->denominator = 1e+9;
 		this->numerator = decimal * denominator;
 		reduce();
@@ -98,9 +98,9 @@ public:
 		cout << "Destructor:\t\t" << this << endl;
 	}
 
-	//3. Перегрузить арифметические операторы : +, -, *, / ;
-//4. Перегрузить операторы++ / --;
-//5. Перегрузить составные присваивания : +=, -=, *=, /=;
+	//3. РџРµСЂРµРіСЂСѓР·РёС‚СЊ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С‚РѕСЂС‹ : +, -, *, / ;
+//4. РџРµСЂРµРіСЂСѓР·РёС‚СЊ РѕРїРµСЂР°С‚РѕСЂС‹++ / --;
+//5. РџРµСЂРµРіСЂСѓР·РёС‚СЊ СЃРѕСЃС‚Р°РІРЅС‹Рµ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ : +=, -=, *=, /=;
 
 
 	//				Operators:
@@ -112,14 +112,14 @@ public:
 		return *this;
 	}
 
-	Fraction& operator ++()//префикс
+	Fraction& operator ++()//РїСЂРµС„РёРєСЃ
 	{
 		integer++;
 		numerator++;
 		denominator++;
 		return *this;
 	}
-	Fraction& operator ++(int)//постфикс
+	Fraction& operator ++(int)//РїРѕСЃС‚С„РёРєСЃ
 	{
 		Fraction old = *this;
 		integer++;
@@ -128,7 +128,7 @@ public:
 		return old;
 	}
 
-	//5. Перегрузить составные присваивания : +=, -=, *=, /=;
+	//5. РџРµСЂРµРіСЂСѓР·РёС‚СЊ СЃРѕСЃС‚Р°РІРЅС‹Рµ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ : +=, -=, *=, /=;
 
 	Fraction& operator=(const Fraction& other)
 	{
@@ -201,7 +201,7 @@ public:
 			more = less;
 			less = rest;
 		} while (rest);
-		int GCD = more;	//GCD - Greates Common Divisor (Наибольший общий делитель)
+		int GCD = more;	//GCD - Greates Common Divisor (РќР°РёР±РѕР»СЊС€РёР№ РѕР±С‰РёР№ РґРµР»РёС‚РµР»СЊ)
 		numerator /= GCD;
 		denominator /= GCD;
 		return *this;
@@ -267,7 +267,7 @@ Fraction operator-(Fraction left, Fraction right)
 //////////////////////////////////////////////////////////////////
 //////					Comparison operators				//////
 //////////////////////////////////////////////////////////////////
-//6. Перегрузить операторы сравнения : == , != , > , < , >= , <= ;
+//6. РџРµСЂРµРіСЂСѓР·РёС‚СЊ РѕРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ : == , != , > , < , >= , <= ;
 bool operator==(Fraction left, Fraction right)
 {
 
@@ -277,7 +277,7 @@ bool operator==(Fraction left, Fraction right)
 }
 bool operator!=(const Fraction& left, const Fraction& right)
 {
-	return !(left == right); //НЕ равно
+	return !(left == right); //РќР• СЂР°РІРЅРѕ
 }
 
 bool operator>(Fraction left, Fraction right)
@@ -299,7 +299,7 @@ bool operator<(Fraction left, Fraction right)
 bool operator>=(const Fraction& left, const Fraction& right)
 {
 	//return left > right || left == right;
-	return !(left < right);	//Больше или равно - это НЕ меньше
+	return !(left < right);	//Р‘РѕР»СЊС€Рµ РёР»Рё СЂР°РІРЅРѕ - СЌС‚Рѕ РќР• РјРµРЅСЊС€Рµ
 }
 bool operator<=(const Fraction& left, const Fraction& right)
 {
@@ -308,7 +308,7 @@ bool operator<=(const Fraction& left, const Fraction& right)
 }
 
 /////////////////////////////////////////////////////////////////
-//7. Перегрузить оператор ввода с клавиатуры;*/
+//7. РџРµСЂРµРіСЂСѓР·РёС‚СЊ РѕРїРµСЂР°С‚РѕСЂ РІРІРѕРґР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹;*/
 
 std::ostream& operator<<(std::ostream& os, const Fraction& obj)
 {
@@ -336,12 +336,12 @@ std::istream& operator>>(std::istream& is, Fraction& obj)
 	//is >> buffer;
 	is.getline(buffer, SIZE);
 
-	int n = 0;	//счетчик чисел в веденной строке
+	int n = 0;	//СЃС‡РµС‚С‡РёРє С‡РёСЃРµР» РІ РІРµРґРµРЅРЅРѕР№ СЃС‚СЂРѕРєРµ
 	/*https ://legacy.cplusplus.com/reference/cstring/strtok/ */
 	for (char* pch = strtok(buffer, delimiters); pch; pch = strtok(NULL, delimiters))
 		number[n++] = atoi(pch);
-	//функция atoi(...) ASCII-string to integer преобразует строку в число,
-	//если строка является числом, т.е., содержит цифры.
+	//С„СѓРЅРєС†РёСЏ atoi(...) ASCII-string to integer РїСЂРµРѕР±СЂР°Р·СѓРµС‚ СЃС‚СЂРѕРєСѓ РІ С‡РёСЃР»Рѕ,
+	//РµСЃР»Рё СЃС‚СЂРѕРєР° СЏРІР»СЏРµС‚СЃСЏ С‡РёСЃР»РѕРј, С‚.Рµ., СЃРѕРґРµСЂР¶РёС‚ С†РёС„СЂС‹.
 	/* https: //legacy.cplusplus.com/reference/cstdlib/atoi/ */
 
 	switch (n)
@@ -393,7 +393,7 @@ void main()
 	double a = 2;
 	double b = 3;
 	double c = a * b;
-	cout << "Создание дробей\n";
+	cout << "РЎРѕР·РґР°РЅРёРµ РґСЂРѕР±РµР№\n";
 	Fraction A(1, 2, 3);
 	Fraction B(1, 1, 3);
 	cout << A;
@@ -401,31 +401,31 @@ void main()
 
 
 
-	Fraction C = A * B; cout << "Умножение дробей\n"; cout << C << endl;
-	Fraction D = A / B; cout << "Деление дробей\n"; cout << D << endl;
-	Fraction F = A - B; cout << "Вычитание дробей\n"; cout << F << endl;
-	Fraction E = A + B; cout << "Сложение дробей\n"; cout << E << endl;
+	Fraction C = A * B; cout << "РЈРјРЅРѕР¶РµРЅРёРµ РґСЂРѕР±РµР№\n"; cout << C << endl;
+	Fraction D = A / B; cout << "Р”РµР»РµРЅРёРµ РґСЂРѕР±РµР№\n"; cout << D << endl;
+	Fraction F = A - B; cout << "Р’С‹С‡РёС‚Р°РЅРёРµ РґСЂРѕР±РµР№\n"; cout << F << endl;
+	Fraction E = A + B; cout << "РЎР»РѕР¶РµРЅРёРµ РґСЂРѕР±РµР№\n"; cout << E << endl;
 
 
-	A *= B; cout << "*= дробей\n"; cout << A << endl;
-	A /= B; cout << "/= дробей\n"; cout << A << endl;
-	A += A; cout << "+= дробей\n"; cout << A << endl;
-	A -= B; cout << "-= дробей\n"; cout << A << endl;
+	A *= B; cout << "*= РґСЂРѕР±РµР№\n"; cout << A << endl;
+	A /= B; cout << "/= РґСЂРѕР±РµР№\n"; cout << A << endl;
+	A += A; cout << "+= РґСЂРѕР±РµР№\n"; cout << A << endl;
+	A -= B; cout << "-= РґСЂРѕР±РµР№\n"; cout << A << endl;
 #endif // ARITHMETICAL_OPERATORS_CHECK
 
 #ifdef COMPARISON_OPERATORS
-	cout << " <= дробей\n"<<(Fraction(1, 3) <= Fraction(5, 10)) << endl;
-	cout << " == дробей\n" << (Fraction(1, 3) == Fraction(5, 10)) << endl;
-	cout << " >= дробей\n" << (Fraction(1, 3) >= Fraction(5, 10)) << endl;
-	cout << " < дробей\n" << (Fraction(1, 3) < Fraction(5, 10)) << endl;
-	cout << " > дробей\n" << (Fraction(1, 3) > Fraction(5, 10)) << endl;
+	cout << " <= РґСЂРѕР±РµР№\n"<<(Fraction(1, 3) <= Fraction(5, 10)) << endl;
+	cout << " == РґСЂРѕР±РµР№\n" << (Fraction(1, 3) == Fraction(5, 10)) << endl;
+	cout << " >= РґСЂРѕР±РµР№\n" << (Fraction(1, 3) >= Fraction(5, 10)) << endl;
+	cout << " < РґСЂРѕР±РµР№\n" << (Fraction(1, 3) < Fraction(5, 10)) << endl;
+	cout << " > РґСЂРѕР±РµР№\n" << (Fraction(1, 3) > Fraction(5, 10)) << endl;
 	
 
 #endif // COMPARISON_OPERATORS
 
 #ifdef TYPE_CONVERSIONS_BASICS
-			//	(type)value;	//C-like notation (C-подобная форма записи)
-//	type(value);	//Functional notation (Функциональная форма записи)
+			//	(type)value;	//C-like notation (C-РїРѕРґРѕР±РЅР°СЏ С„РѕСЂРјР° Р·Р°РїРёСЃРё)
+//	type(value);	//Functional notation (Р¤СѓРЅРєС†РёРѕРЅР°Р»СЊРЅР°СЏ С„РѕСЂРјР° Р·Р°РїРёСЃРё)
 
 //cout << 7. / 2 << endl;
 
@@ -437,10 +437,10 @@ void main()
 
 	/*
 	-------------------------------------
-	1. Преобразование другиъ типов в наш;
+	1. РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РґСЂСѓРіРёСЉ С‚РёРїРѕРІ РІ РЅР°С€;
 		Single-argument constructor;
 		Assignment operator;
-	2. Преобразование и нашего типа в другие типы;
+	2. РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё РЅР°С€РµРіРѕ С‚РёРїР° РІ РґСЂСѓРіРёРµ С‚РёРїС‹;
 	-------------------------------------
 	*/
 
@@ -452,7 +452,7 @@ void main()
 	B = Fraction(8);			//Conversion from other to class preformed by Assignment operator
 	B.print();
 
-	//	explicit - явный  
+	//	explicit - СЏРІРЅС‹Р№  
 #endif // CONVERSION_FROM_OTHER_TO_CLASS
 
 #ifdef CONVERSION_FROM_CLASS_TO_OTHER
@@ -485,13 +485,8 @@ operator type()const
 	cout << B << endl;
 
 	//Fraction A;
-	cout << "Введите простую дробь: "; cin >> A;
-	///*
-	//	5;
-	//	1/2;
-	//	2(3/4);
-	//	2 3/4;
-	//*/
+	cout << "Р’РІРµРґРёС‚Рµ РїСЂРѕСЃС‚СѓСЋ РґСЂРѕР±СЊ: ";
+	cin >> A;
 	cout << A << endl;
 #endif // HOME_WORK_2
 }
