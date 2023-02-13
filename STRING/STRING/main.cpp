@@ -25,12 +25,12 @@ public:
 	{
 		cout << "DefConstructor:\t" << this << endl;
 	}
-	String(const char* str) :size(strlen(str)+1),str(new char[size]{})
+	String(const char* str) :String(strlen(str)+1)
 	{
 		for (int i = 0; i < size; i++)this->str[i] = str[i];
 		cout << "1ArgConstructor: \t" << this << endl;
 	}
-	String(const String& other): size(other.size),str(new char[size]{})
+	String(const String& other): String(other.str)
 	{
 		//Deep copy - побитовое копирование
 		for (int i = 0; i < size; i++)
@@ -118,7 +118,8 @@ void main()
 
 	String str2 = "World";
 	cout << str2 << endl;
-	String str4 = str2;
+	String str3 = str1 + str2;
+	String str4 = str3;
 	str4.print();
 #endif // BASE_CHECK
 //
