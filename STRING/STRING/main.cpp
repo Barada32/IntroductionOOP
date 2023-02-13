@@ -63,9 +63,7 @@ public:
 			this->str[i] = other.str[i];
 		cout << "CopyAssignment:\t" << this << endl;
 		return *this;
-
-
-	}
+	} 
 	String& operator=(String&& other)noexcept
 	{
 		this->size = other.size;
@@ -84,6 +82,7 @@ public:
 		cout << "Str:\t" << str << endl;
 	}
 };
+
 String operator+(const String& left, const String& right)
 {
 	String cat(left.get_size() + right.get_size() - 1);
@@ -92,10 +91,8 @@ String operator+(const String& left, const String& right)
 	for (int i = 0; i < right.get_size(); i++)
 	{
 		cat.get_str()[i + left.get_size() - 1] = right.get_str()[i];
-
 	}
 	return cat;
-
 }
 std::ostream& operator<<(std::ostream& os, const String& obj)
 {
