@@ -1,5 +1,8 @@
 #include<iostream>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;;
 #define BASE_CHECK
 //#define CALLING_CONSTRUCTOR
 class String
@@ -7,82 +10,104 @@ class String
 	int size;		//размер строки
 	char* str; 		//адрес строки в динамической памяти
 public:
-	int get_size()const
-	{
-		return size;
-	}
-	const char* get_str()const
-	{
-		return str;
-	}
-	char* get_str()
-	{
-		return str;
-	}
+	int get_size()const;
+	const char* get_str()const;
+	char* get_str();
 
 	//				Constructors:
-	explicit String(int size = 80) :size(size), str(new char[size] {})
-	{
-		cout << "DefConstructor:\t" << this << endl;
-	}
-	String(const char* str) :String(strlen(str)+1)
-	{
-		for (int i = 0; i < size; i++)this->str[i] = str[i];
-		cout << "1ArgConstructor: \t" << this << endl;
-	}
-	String(const String& other): String(other.str)
-	{
-		//Deep copy - побитовое копирование
-		for (int i = 0; i < size; i++)
-			this->str[i] = other.str[i];
-		cout << "CopyConstructor:\t" << endl;
-	}
-	String(String&& other)noexcept:size(other.size),str(other.str)
-	{
-		//Shallow Copy - поверхностное копирование
-		other.size = 0;
-		other.str = nullptr;
-		cout << "MoveConstructor: " << this << endl;
-	}
+	explicit String(int size = 80);
+	String(const char* str);
+	String(const String& other);
+	String(String&& other)noexcept;
 
-	~String()
-	{
-		delete this->str;
-		cout << "Destructor:\t" << this << endl;
-	}
+	~String();
 
 	//operators
-	String& operator =(const String& other)
-	{
-		/*l value = r_value;*/
-		if (this == &other)return *this;
-		delete[]this->str;
-		this->size = other.size;
-		this->str = new char[size] {};
-		for (int i = 0; i < size; i++)
-			this->str[i] = other.str[i];
-		cout << "CopyAssignment:\t" << this << endl;
-		return *this;
-	} 
-	String& operator=(String&& other)noexcept
-	{
-		this->size = other.size;
-		this->str = other.str;
-		other.size = 0;
-		other.str = nullptr;
-		cout << "MoveAssigment:\t" << this << endl;
-		return *this;
-	}
-
-
+	String& operator =(const String& other);
+	String& operator=(String&& other)noexcept;
+	String& operator+=(const String& other);
 	//				Methods:
-	void print()const
-	{
-		cout << "Size:\t" << size << endl;
-		cout << "Str:\t" << str << endl;
-	}
+	void print()const;
 };
-String operator+(const String& left, const String& right)
+
+//////////////////////////////
+///CLASS DECLARATION END//////
+//////////////////////////////
+int String:: get_size()const
+{
+	return size;
+}
+const  char* String::get_str()const
+{
+	return str;
+}
+char* String::get_str()
+{
+	return str;
+}
+
+//				Constructors:
+ String::String(int size ) :size(size), str(new char[size] {})
+{
+	cout << "DefConstructor:\t" << this << endl;
+}
+String::String(const char* str) :String(strlen(str) + 1)
+{
+	for (int i = 0; i < size; i++)this->str[i] = str[i];
+	cout << "1ArgConstructor: \t" << this << endl;
+}
+String::String(const String& other) : String(other.str)
+{
+	//Deep copy - побитовое копирование
+	for (int i = 0; i < size; i++)
+		this->str[i] = other.str[i];
+	cout << "CopyConstructor:\t" << endl;
+}
+String::String(String&& other)noexcept :size(other.size), str(other.str)
+{
+	//Shallow Copy - поверхностное копирование
+	other.size = 0;
+	other.str = nullptr;
+	cout << "MoveConstructor: " << this << endl;
+}
+
+String::~String()
+{
+	delete this->str;
+	cout << "Destructor:\t" << this << endl;
+}
+
+//operators
+String& String::operator =(const String& other)
+{
+	/*l value = r_value;*/
+	if (this == &other)return *this;
+	delete[]this->str;
+	this->size = other.size;
+	this->str = new char[size] {};
+	for (int i = 0; i < size; i++)
+		this->str[i] = other.str[i];
+	cout << "CopyAssignment:\t" << this << endl;
+	return *this;
+}
+String& String:: operator=(String&& other)noexcept
+{
+	this->size = other.size;
+	this->str = other.str;
+	other.size = 0;
+	other.str = nullptr;
+	cout << "MoveAssigment:\t" << this << endl;
+	return *this;
+}
+
+
+//				Methods:
+void String::print()const
+{
+	cout << "Size:\t" << size << endl;
+	cout << "Str:\t" << str << endl;
+}
+String  operator+(const String& left, const String& right)
 {
 	String cat(left.get_size() + right.get_size() - 1);
 	for (int i = 0; i < left.get_size(); i++)
@@ -97,6 +122,9 @@ std::ostream& operator<<(std::ostream& os, const String& obj)
 {
 	return os << obj.get_str();
 }
+//////////////////////////////
+///CLASS DEFINITION  END//////
+//////////////////////////////
 
 
 void main()
