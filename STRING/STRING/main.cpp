@@ -1,6 +1,7 @@
 ﻿#include<iostream>
 using namespace std;
-////#define BASE_CHECK
+#define BASE_CHECK
+//#define BASE_CHECK_2
 
 class String
 {
@@ -129,6 +130,7 @@ void main()
 	cout << str3 << endl;
 #endif // BASE_CHECK
 
+#ifdef BASE_CHECK_2
 	String str1;	//Default constructor
 	str1.print();
 	String str2 = "Hello";	//Single argument constructor
@@ -146,7 +148,9 @@ void main()
 	str6.print();
 	String str7{ "World" };
 	str7.print();
-	String str8{ str7 };	//Copy constructor
+	String str8{ str7 };	//Copy constructor  
+#endif // //#define BASE_CHECK_2
+
 
 
 }
