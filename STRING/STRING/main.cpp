@@ -82,7 +82,6 @@ public:
 		cout << "Str:\t" << str << endl;
 	}
 };
-
 String operator+(const String& left, const String& right)
 {
 	String cat(left.get_size() + right.get_size() - 1);
