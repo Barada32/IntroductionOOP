@@ -1,236 +1,135 @@
-﻿//#include <iostream>
-//using namespace std;
-//#define delimetr "\n__________________________________\n"
-//
-///*В классе Fraction реализовать :
-//1. Конструкторы и вывод на экран;
-//5;		//double a = 5;
-//1 / 2;
-//2(3 / 4);
-//2. Написать методы :
-//Fraction & to_proper();	//целую часть интегрирует в числитель
-//Fraction& to_improper();//выделяет целую часть из числителя
-//
-//
-//3. Перегрузить арифметические операторы : +, -, *, / ;
-//4. Перегрузить операторы++ / --;
-//5. Перегрузить составные присваивания : +=, -=, *=, /=;
-//6. Перегрузить операторы сравнения : == , != , > , < , >= , <= ;
-//7. Перегрузить оператор ввода с клавиатуры;*/
-//int nod(int a, int b)
-//{
-//	if (a % b == 0)
-//		return b;
-//	else
-//		return nod(b, a % b);
-//}
-//
-//class Fraction//структура 
-//{
-//	int integer;//целая
-//	int numerator;//числитиль
-//	int denominator;//знаменатель
-//
-//public:
-//
-//	int get_integer() const { return integer; }
-//	int get_numerator() const { return numerator; }
-//	int get_denominator() const { return denominator; }
-//
-//	void set_integer(int integer)
-//	{
-//		this->integer = integer;
-//	}
-//	void set_numerator(int numerator)
-//	{
-//
-//		this->numerator = numerator;
-//	}
-//	void set_denominator(int denominator)
-//	{
-//		if (denominator == 0)denominator = 1;
-//		this->denominator = denominator;
-//	}
-//	/*Constructor */
-//
-//	Fraction(int integer = 0, int numerator = 1, int denominator = 1)
-//	{
-//		this->integer = integer;
-//		this->numerator = numerator;
-//		this->denominator = denominator;
-//		cout << "Constructor:\t" << this << endl;
-//	}
-//
-//
-//
-//
-//	/*Destructor*/
-//	~Fraction()
-//	{
-//		cout << "Destructor:\t " << this << endl;
-//	}
-//
-//
-//	/*Operators:*/
-//	Fraction& operator()(int a, int x, int y)
-//	{
-//		set_integer(a);
-//		set_numerator(x);
-//		set_denominator(y);
-//		return *this;
-//
-//	}
-//
-//
-//		 /*methods*/
-//		 /*2. Написать методы :
-//		 Fraction & to_proper();	целую часть интегрирует в числитель*/
-//	Fraction& to_proper(const Fraction& A)
-//	{
-//
-//
-//		int proper = (A.get_integer() * A.get_denominator()) + A.get_numerator();
-//		int denominator = A.get_denominator();
-//		set_integer(0);
-//		set_numerator(proper);
-//
-//
-//		return*this;
-//
-//
-//	}
-//	/*Fraction& to_improper();выделяет целую часть из числителя*/
-//	Fraction& to_improper(const Fraction& A) 
-//	{
-//		int integer = A.get_integer();
-//
-//		integer = A.get_numerator() / A.get_denominator();
-//
-//		set_integer(integer);
-//		set_numerator(A.get_numerator() % A.get_denominator());
-//
-//
-//		return*this;
-//
-//
-//
-//	}
-//
-//
-//
-//	void print()const
-//	{
-//		if (integer == 0)
-//		{
-//			cout << "( " << numerator << "/ " << denominator << " )" << endl;
-//		}
-//		else
-//			cout << integer << "( " << numerator << "/ " << denominator << " )" << endl;
-//	}
-//
-//};
-///*3. Перегрузить арифметические операторы : +, -, *, / ;*/
-//Fraction operator+(const Fraction& left, const Fraction& right)
-//{
-//		Fraction res;
-//
-//		int n1 = left.get_numerator(), d1 = left.get_denominator(), n2 = right.get_numerator(), d2 = right.get_denominator();
-//		int res_num = (n1 * d2) / nod(d1, d2) + (n2 * d1) / nod(d1, d2);
-//		int res_den = (d1 * d2) / nod(d1, d2);
-//		res.set_numerator(res_num / nod(res_num, res_den));
-//		res.set_denominator(res_den / nod(res_num, res_den));
-//		res.set_integer(left.get_integer() + right.get_integer());
-//		return res;
-//}
-//Fraction operator-(const Fraction& left, const Fraction& right)
-//{
-//	Fraction res;
-//	int n1 = left.get_numerator(), d1 = left.get_denominator(), n2 = right.get_numerator(), d2 = right.get_denominator();
-//	res.set_numerator((n1 * d2) / nod(d1, d2) - (n2 * d1) / nod(d1, d2));
-//	res.set_denominator((d1 * d2) / nod(d1, d2));
-//	res.set_integer(left.get_integer() - right.get_integer());
-//	return res;
-//} 
-//Fraction operator*(const Fraction& left, const Fraction& right)
-//{
-//	Fraction res;
-//	int n1 = left.get_numerator(), d1 = left.get_denominator(), n2 = right.get_numerator(), d2 = right.get_denominator();
-//	int res_num = n1 * n2;
-//	int res_den = d1 * d2;
-//	
-//	res.set_numerator(res_num/nod(res_num, res_den)) ;
-//	res.set_denominator(res_den / nod(res_num, res_den));
-//	res.set_integer(left.get_integer() * right.get_integer());
-//	
-//	return res;
-//}
-////5. Перегрузить составные присваивания : +=, -=, *=, /=;
-//Fraction operator/(const Fraction& left, const Fraction& right)
-//{
-//	Fraction res;
-//	int n1 = left.get_numerator(), d1 = left.get_denominator(), n2 = right.get_numerator(), d2 = right.get_denominator();
-//	int res_num = n1 * d2;
-//	int res_den = d1 * n2;
-//
-//	res.set_numerator(res_num / nod(res_num, res_den));
-//	res.set_denominator(res_den / nod(res_num, res_den));
-//	res.set_integer(left.get_integer() / right.get_integer());
-//
-//	return res;
-//}
-// 
-// 
-// Fraction& operator=(const Fraction& other)
-//{
-//	this->integer = other.integer;
-//	this->numerator = other.numerator;
-//	this->denominator = other.denominator;
-//	cout << "CopyAssignment:\t" << this << endl;
-//	return *this;
-//	}
-//Fraction& operator*=(const Fraction& other)
-//{
-//	return *this = *this * other;
-//}
-//Fraction& operator/=(const Fraction& other)
-//{
-//	return *this = *this / other;
-//}
-// 
-// 
-// 
-// 
-//
-//
-//void main()
-//{
-//	setlocale(LC_ALL, "RUS");
-//
-//	Fraction A(3, 4, 5);
-//	Fraction B(2, 1, 2);
-//	
-//	A.print();
-//	B.print();
-//	
-//	cout << delimetr << "C = A + B=\n" ;
-//	Fraction C = A + B;
-//	C.print();
-//	cout <<delimetr << "C = A - B=\n"  ;
-//	C = A - B;
-//	C.print();
-//	cout << delimetr << "C = A * B =\n";
-//	C = A * B;
-//	C.print();
-//	cout << delimetr << "C = A / B=\n" ;
-//	C = A / B;
-//	C.print();
-//	cout << delimetr << "целую часть интегрирует в числитель\n";
-//	A.to_proper(A);
-//	A.print();
-//	cout << delimetr << "целую часть вставляет в числитель\n";
-//	A.to_improper(A);
-//	A.print();
-//	cout << delimetr;
-//	
-//	
-//}	
+﻿#include<iostream>
+#include "FRACTION.h"
+
+
+//#define CONSTRUCTORS_CHECK
+//#define ARITHMETICAL_OPERATORS_CHECK
+//#define COMPARISON_OPERATORS
+//#define TYPE_CONVERSIONS_BASICS
+//#define CONVERSION_FROM_OTHER_TO_CLASS
+//#define CONVERSION_FROM_CLASS_TO_OTHER
+
+//#define HOME_WORK_1
+//#define HOME_WORK_2
+
+void main()
+{
+	setlocale(LC_ALL, "");
+#ifdef CONSTRUCTORS_CHECK
+	Fraction A;
+	A.print();
+
+	Fraction B = 5;
+	B.print();
+
+	Fraction C(2, 3);
+	C.print();
+
+	Fraction D(2, 3, 4);
+	D.print();
+
+	Fraction E = D;
+	E.print();
+#endif // CONSTRUCTORS_CHECK
+
+#ifdef ARITHMETICAL_OPERATORS_CHECK
+	double a = 2;
+	double b = 3;
+	double c = a * b;
+	cout << "Создание дробей\n";
+	Fraction A(1, 2, 3);
+	Fraction B(1, 1, 3);
+	cout << A;
+	cout << B;
+
+
+
+	Fraction C = A * B; cout << "Умножение дробей\n"; cout << C << endl;
+	Fraction D = A / B; cout << "Деление дробей\n"; cout << D << endl;
+	Fraction F = A - B; cout << "Вычитание дробей\n"; cout << F << endl;
+	Fraction E = A + B; cout << "Сложение дробей\n"; cout << E << endl;
+
+
+	A *= B; cout << "*= дробей\n"; cout << A << endl;
+	A /= B; cout << "/= дробей\n"; cout << A << endl;
+	A += A; cout << "+= дробей\n"; cout << A << endl;
+	A -= B; cout << "-= дробей\n"; cout << A << endl;
+#endif // ARITHMETICAL_OPERATORS_CHECK
+
+#ifdef COMPARISON_OPERATORS
+	cout << " <= дробей\n"<<(Fraction(1, 3) <= Fraction(5, 10)) << endl;
+	cout << " == дробей\n" << (Fraction(1, 3) == Fraction(5, 10)) << endl;
+	cout << " >= дробей\n" << (Fraction(1, 3) >= Fraction(5, 10)) << endl;
+	cout << " < дробей\n" << (Fraction(1, 3) < Fraction(5, 10)) << endl;
+	cout << " > дробей\n" << (Fraction(1, 3) > Fraction(5, 10)) << endl;
+	
+
+#endif // COMPARISON_OPERATORS
+
+#ifdef TYPE_CONVERSIONS_BASICS
+			//	(type)value;	//C-like notation (C-подобная форма записи)
+//	type(value);	//Functional notation (Функциональная форма записи)
+
+//cout << 7. / 2 << endl;
+
+	int a = 2;		//No conversions
+	double b = 3;	//Conversion from less to more
+	int c = b;		//Conversion from more to less with no data loss
+	int d = 4.5;	//Conversion from more to less with data loss  
+#endif // TYPE_CONVERSIONS_BASICS
+
+	/*
+	-------------------------------------
+	1. Преобразование другиъ типов в наш;
+		Single-argument constructor;
+		Assignment operator;
+	2. Преобразование и нашего типа в другие типы;
+	-------------------------------------
+	*/
+
+#ifdef CONVERSION_FROM_OTHER_TO_CLASS
+	Fraction A = (Fraction)5;	//Conversion from other to class preformed by Single-argument constructor
+	A.print();
+
+	Fraction B;
+	B = Fraction(8);			//Conversion from other to class preformed by Assignment operator
+	B.print();
+
+	//	explicit - явный  
+#endif // CONVERSION_FROM_OTHER_TO_CLASS
+
+#ifdef CONVERSION_FROM_CLASS_TO_OTHER
+			/*
+-------------------------------------
+Type-cast operators
+operator type()const
+{
+	conversion algorithm;
+	return ...;
+}
+-------------------------------------
+*/
+
+	Fraction A(11, 4);
+	A.print();
+	int a = (int)A;
+	cout << a << endl;
+#endif // CONVERSION_FROM_CLASS_TO_OTHER
+
+#ifdef HOME_WORK_1
+	Fraction B(2, 3, 4);
+	double b = (double)B;
+	cout << b << endl;
+#endif // HOME_WORK_1
+
+#ifdef HOME_WORK_2
+	Fraction B = 2.75;
+	//B.print(cout) << endl;;
+	cout << B << endl;
+
+	//Fraction A;
+	cout << "Введите простую дробь: ";
+	cin >> A;
+	cout << A << endl;
+#endif // HOME_WORK_2
+}
