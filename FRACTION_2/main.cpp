@@ -2,12 +2,11 @@
 #include "FRACTION.h"
 #define _CRT_SECURE_NO_WARNINGS
 
-
 //#define CONSTRUCTORS_CHECK
-#define ARITHMETICAL_OPERATORS_CHECK
+//#define ARITHMETICAL_OPERATORS_CHECK
 //#define COMPARISON_OPERATORS
 //#define TYPE_CONVERSIONS_BASICS
-//#define CONVERSION_FROM_OTHER_TO_CLASS
+#define CONVERSION_FROM_OTHER_TO_CLASS
 //#define CONVERSION_FROM_CLASS_TO_OTHER
 
 //#define HOME_WORK_1
@@ -90,11 +89,11 @@ void main()
 
 #ifdef CONVERSION_FROM_OTHER_TO_CLASS
 	Fraction A = (Fraction)5;	//Conversion from other to class preformed by Single-argument constructor
-	A.print();
+	cout<<A;
 
 	Fraction B;
 	B = Fraction(8);			//Conversion from other to class preformed by Assignment operator
-	B.print();
+	cout << B;
 
 	//	explicit - явный  
 #endif // CONVERSION_FROM_OTHER_TO_CLASS

@@ -216,7 +216,6 @@ std::ostream& Fraction::print(std::ostream& os)const
 	return os;
 }
 
-
 Fraction operator*(Fraction left, Fraction right)
 {
 	left.to_improper();
