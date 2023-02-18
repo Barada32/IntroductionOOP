@@ -1,35 +1,38 @@
 #include "FRACTION.h"
 #include<iostream>
+#define _CRT_SECURE_NO_WARNINGS
 using namespace std;
 using std::cin;
 using std::cout;
 using std::endl;;
+
+class Fraction;
 
 
 /////////////////////////////////////////////////////////////////
 ////    РЕАЛИЗАЦИЯ методов  КЛАССА							 ////
 /////////////////////////////////////////////////////////////////
 int Fraction::get_integer()const
-{
+{ 
 	return integer;
 }
 int Fraction::get_numerator()const
 {
 	return numerator;
 }
-int get_denominator()const
+int Fraction::get_denominator()const
 {
 	return denominator;
 }
-void set_integer(int integer)
+void  Fraction::set_integer(int integer)
 {
 	this->integer = integer;
 }
-void set_numerator(int numerator)
+void Fraction::set_numerator(int numerator)
 {
 	this->numerator = numerator;
 }
-void set_denominator(int denominator)
+void Fraction::set_denominator(int denominator)
 {
 	if (denominator == 0)denominator = 1;
 	this->denominator = denominator;
@@ -42,14 +45,14 @@ void set_denominator(int denominator)
 //5;		//double a = 5;
 //1 / 2;
 //2(3 / 4);
-Fraction()
+Fraction::Fraction()
 {
 	this->integer = 0;
 	this->numerator = 0;
 	this->denominator = 1;
 	cout << "DefaultConstructor:\t" << this << endl;
 }
-Fraction(double decimal)
+Fraction::Fraction(double decimal)
 {
 	this->integer = decimal;	//сохраняем целую часть
 	decimal -= integer;			//убираем целую часть из десятичной дроби
@@ -58,35 +61,35 @@ Fraction(double decimal)
 	reduce();
 	cout << "DConstructor:\t\t" << this << endl;
 }
-explicit Fraction(int integer)
+Fraction::Fraction(int integer)
 {
 	this->integer = integer;
 	this->numerator = 0;
 	this->denominator = 1;
 	cout << "1ArgConstructor:\t" << this << endl;
 }
-Fraction(int numerator, int denominator)
+Fraction::Fraction(int numerator, int denominator)
 {
 	this->integer = 0;
 	this->numerator = numerator;
 	this->set_denominator(denominator);
 	cout << "Constructor:\t\t" << this << endl;
 }
-Fraction(int integer, int numerator, int denominator)
+Fraction::Fraction(int integer, int numerator, int denominator)
 {
 	this->integer = integer;
 	this->numerator = numerator;
 	this->set_denominator(denominator);
 	cout << "Constructor:\t\t" << this << endl;
 }
-Fraction(const Fraction& other)
+Fraction::Fraction(const Fraction& other)
 {
 	this->integer = other.integer;
 	this->numerator = other.numerator;
 	this->denominator = other.denominator;
 	cout << "CopyConstructor:\t" << this << endl;
 }
-~Fraction()
+Fraction::~Fraction()
 {
 	cout << "Destructor:\t\t" << this << endl;
 }
@@ -97,7 +100,7 @@ Fraction(const Fraction& other)
 
 
 	//				Operators:
-Fraction& operator()(int integer, int numerator, int denominator)
+Fraction& Fraction:: operator()(int integer, int numerator, int denominator)
 {
 	set_integer(integer);
 	set_numerator(numerator);
@@ -105,14 +108,14 @@ Fraction& operator()(int integer, int numerator, int denominator)
 	return *this;
 }
 
-Fraction& operator ++()//префикс
+Fraction& Fraction::operator ++()//префикс
 {
 	integer++;
 	numerator++;
 	denominator++;
 	return *this;
 }
-Fraction& operator ++(int)//постфикс
+Fraction& Fraction:: operator ++(int)//постфикс
 {
 	Fraction old = *this;
 	integer++;
@@ -123,7 +126,7 @@ Fraction& operator ++(int)//постфикс
 
 //5. Перегрузить составные присваивания : +=, -=, *=, /=;
 
-Fraction& operator=(const Fraction& other)
+Fraction& Fraction::operator=(const Fraction& other)
 {
 	this->integer = other.integer;
 	this->numerator = other.numerator;
@@ -132,57 +135,57 @@ Fraction& operator=(const Fraction& other)
 	return *this;
 }
 
-Fraction& operator*=(const Fraction& other)
+Fraction& Fraction:: operator*=(const Fraction& other)
 {
 	return *this = *this * other;
 }
-Fraction& operator +=(const Fraction& other)
+Fraction& Fraction:: operator +=(const Fraction& other)
 {
 	return*this = *this + other;
 
 
 }
-Fraction& operator -=(const Fraction& other)
+Fraction& Fraction:: operator -=(const Fraction& other)
 {
 	return*this = *this - other;
 }
 
-Fraction& operator/=(const Fraction& other)
+Fraction& Fraction:: operator/=(const Fraction& other)
 {
 	return *this = *this / other;
 }
 
 //				Type-cast operators:
-explicit operator int()const
+ Fraction:: operator int()const
 {
 	return Fraction(*this).to_proper().integer;
 }
-explicit operator double()const
+ Fraction::operator double()const
 {
 	return integer + (double)numerator / denominator;
 }
 
 //				Methods:
-Fraction& to_improper()
+Fraction& Fraction::to_improper()
 {
 	numerator += integer * denominator;
 	integer = 0;
 	return *this;
 }
-Fraction& to_proper()
+Fraction& Fraction::to_proper()
 {
 	integer += numerator / denominator;
 	numerator %= denominator;
 	return *this;
 }
-Fraction inverted()const
+Fraction Fraction::inverted()const
 {
 	Fraction inverted = *this;
 	inverted.to_improper();
 	swap(inverted.numerator, inverted.denominator);
 	return inverted;
 }
-Fraction& reduce()
+Fraction& Fraction::reduce()
 {
 	//https://www.webmath.ru/poleznoe/formules_12_7.php
 	int more, less, rest = 0;
@@ -199,7 +202,7 @@ Fraction& reduce()
 	denominator /= GCD;
 	return *this;
 }
-std::ostream& print(std::ostream& os)const
+std::ostream& Fraction::print(std::ostream& os)const
 {
 	if (integer)os << integer;
 	if (numerator)
@@ -212,7 +215,7 @@ std::ostream& print(std::ostream& os)const
 	//os << endl;
 	return os;
 }
-};
+
 
 Fraction operator*(Fraction left, Fraction right)
 {
@@ -224,13 +227,13 @@ Fraction operator*(Fraction left, Fraction right)
 		left.get_denominator() * right.get_denominator()
 	).to_proper().reduce();
 }
-Fraction operator/(const Fraction& left, const Fraction& right)
+Fraction operator/(const  Fraction& left, const Fraction& right)
 {
 	return left * right.inverted();
 }
 
 
-Fraction operator+(Fraction left, Fraction right)
+Fraction  operator+(Fraction left, Fraction right)
 {
 	left.to_improper();
 	right.to_improper();
@@ -238,13 +241,6 @@ Fraction operator+(Fraction left, Fraction right)
 	((left.get_numerator() * right.get_denominator() + left.get_denominator() * right.get_numerator()),
 		(left.get_denominator() * right.get_denominator())
 	).reduce().to_proper();
-
-
-
-
-
-
-
 }
 Fraction operator-(Fraction left, Fraction right)
 {

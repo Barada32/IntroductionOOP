@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-//#define _CRT_SECURE_NO_WARNINGS
+
 
 
 
@@ -11,10 +11,7 @@ using std::endl;;
 
 
 class Fraction;
-Fraction operator*(Fraction left, Fraction right);
-Fraction operator/(const Fraction& left, const Fraction& right);
-Fraction operator+(Fraction left, Fraction right);
-Fraction operator-(Fraction left, Fraction right);
+
 
 class Fraction
 {
@@ -22,31 +19,12 @@ class Fraction
 	int numerator;		//числитель
 	int denominator;	//знаменатель
 public:
-	int get_integer()const
-	{
-		return integer;
-	}
-	int get_numerator()const
-	{
-		return numerator;
-	}
-	int get_denominator()const
-	{
-		return denominator;
-	}
-	void set_integer(int integer)
-	{
-		this->integer = integer;
-	}
-	void set_numerator(int numerator)
-	{
-		this->numerator = numerator;
-	}
-	void set_denominator(int denominator)
-	{
-		if (denominator == 0)denominator = 1;
-		this->denominator = denominator;
-	}
+	int get_integer()const;
+	int get_numerator()const;
+	int get_denominator()const;
+	void set_integer(int integer);
+	void set_numerator(int numerator);
+	void set_denominator(int denominator);
 	//					Constructors:
 
 
@@ -94,6 +72,7 @@ public:
 	Fraction inverted()const;
 	Fraction& reduce();
 	std::ostream& print(std::ostream& os)const;
+
 };
 
 
@@ -101,6 +80,11 @@ public:
 //////					Comparison operators				//////
 //////////////////////////////////////////////////////////////////
 //6. Перегрузить операторы сравнения : == , != , > , < , >= , <= ;
+Fraction operator*(Fraction left, Fraction right);
+Fraction operator/(const Fraction& left, const Fraction& right);
+Fraction operator+(Fraction left, Fraction right);
+Fraction operator-(Fraction left, Fraction right);
+
 bool operator==(Fraction left, Fraction right);
 bool operator!=(const Fraction& left, const Fraction& right);
 bool operator>(Fraction left, Fraction right);
