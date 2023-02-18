@@ -11,7 +11,7 @@
 
 //#define HOME_WORK_1
 //#define HOME_WORK_2
-
+ 
 void main()
 {
 	setlocale(LC_ALL, "");
